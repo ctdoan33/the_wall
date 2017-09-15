@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../static/styles.css" rel="stylesheet">
+    <title>Wall</title>
+</head>
+<body>
+    <h1>Coding Dojo Wall</h1>
+    <P>Welcome {{user}}</p>
+    <form action="/logout" method="post">
+        <input type="submit" value="Log Off">
+    </form>
+    <p class="postmeshead">Post a Message</p>
+    <form action="/newmessage" method="post">
+        <textarea class="messagearea" name="message"></textarea>
+        <input type="submit" value="Post a message">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="alert">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if all_messages %}
+        {% for post in all_messages %}
+            <p class="messager">{{post["messager"]}} - {{post["date"]}}</p>
+            <p class="message">{{post["message"]}}</p>
+            {% if post["userid"] == session["id"]%}
+                <form action="/deletemessage/{{post['messageid']}}" method="post">
+                    <input type="submit" value="Delete message">
+                </form>
+            {% endif %}
+            {% for subpost in all_comments %}
+                {% if post["messageid"] == subpost["message_id"]%}
+                    <p class="commenter">{{subpost["commenter"]}} - {{subpost["date"]}}</p>
+                    <p class="comment">{{subpost["comment"]}}</p>
+                {% endif %}
+            {% endfor %}
+            <p class="postcomhead">Post a Comment</p>
+            <form action="/newcomment/{{post['messageid']}}" method="post">
+                <textarea class="commentarea" name="comment"></textarea>
+                <input type="submit" value="Post a comment">
+            </form>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

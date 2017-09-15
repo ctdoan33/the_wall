@@ -1,0 +1,35 @@
+.postmeshead{
+    margin-bottom: 0em;
+}
+.messagearea{
+    margin-left: 1em;
+    width: 50%;
+}
+.alert{
+    color: red;
+}
+.messager{
+    margin-bottom: 0em;
+    font-weight: bold;
+}
+.message{
+    margin-left: 1em;
+    margin-top: 0em;
+}
+.commenter{
+    margin-left: 2em;
+    margin-bottom: 0em;
+    font-weight: bold;
+}
+.comment{
+    margin-left: 2em;
+    margin-top: 0em;
+}
+.postcomhead{
+    margin-left: 2em;
+    margin-bottom: 0em;
+}
+.commentarea{
+    margin-left: 2em;
+    width: 50%;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wall Login/Registration</title>
+</head>
+<body>
+    <h1>Login:</h1>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == "log" %}
+                        <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <form action="/log" method="post">
+        <p>Email:</p>
+        <input type="text" name="email">
+        <p>Password:</p>
+        <input type="password" name="password">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <h1>Register:</h1>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == "reg" %}
+                    <p>{{message}}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/reg" method="post">
+    <p>First Name:</p>
+    <input type="text" name="first_name">
+    <p>Last Name:</p>
+    <input type="text" name="last_name">
+    <p>Email:</p>
+    <input type="text" name="email">
+    <p>Password:</p>
+    <input type="password" name="password">
+    <p>Confirm Password:</p>
+    <input type="password" name="confirm_password">
+    <br>
+    <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
